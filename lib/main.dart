@@ -1,9 +1,5 @@
-import 'dart:io';
-
 import 'package:bitsdojo_window/bitsdojo_window.dart';
 import 'package:flutter/material.dart';
-
-import 'package:path/path.dart' as p;
 
 void main() async {
   runApp(App());
