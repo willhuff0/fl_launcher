@@ -1,5 +1,6 @@
 name: minecraft_launcher
 description: A new Flutter project.
+publish_to: none
 version: 1.0.0+1
 
 environment:
@@ -11,6 +12,9 @@ dependencies:
   bitsdojo_window: ^0.1.1+1
   ionicons: ^0.1.2
   path: ^1.8.0
+  mouse_parallax:
+    git: https://github.com/lceCoIdMoon/mouse_parallax
+  http: ^0.13.4
 
 dev_dependencies:
   flutter_test:

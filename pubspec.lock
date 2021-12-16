@@ -109,6 +109,20 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  http:
+    dependency: "direct main"
+    description:
+      name: http
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.13.4"
+  http_parser:
+    dependency: transitive
+    description:
+      name: http_parser
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "4.0.0"
   ionicons:
     dependency: "direct main"
     description:
@@ -137,6 +151,15 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.7.0"
+  mouse_parallax:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: HEAD
+      resolved-ref: "83632a475c6dfdf2ffc3f9e93a2c741f291a138c"
+      url: "https://github.com/lceCoIdMoon/mouse_parallax"
+    source: git
+    version: "1.0.0"
   path:
     dependency: "direct main"
     description:
