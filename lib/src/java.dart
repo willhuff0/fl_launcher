@@ -3,7 +3,7 @@ import 'dart:io';
 
 import 'package:archive/archive.dart';
 import 'package:flutter/foundation.dart';
-import 'package:minecraft_launcher/main.dart';
+import 'package:fl_launcher/main.dart';
 import 'package:http/http.dart' as http;
 import 'package:path/path.dart' as p;
 

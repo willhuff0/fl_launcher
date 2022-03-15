@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:minecraft_launcher/ui/setup/setup.dart';
+import 'package:fl_launcher/ui/setup/setup.dart';
 import 'package:mouse_parallax/mouse_parallax.dart';
 
 class SetupLanding extends StatelessWidget {
@@ -49,7 +49,7 @@ class SetupLanding extends StatelessWidget {
           right: 48.0,
           child: TextButton(
             child: Text('Next'),
-            onPressed: () => setupChangePage(1),
+            onPressed: () => setupNextPage(),
           ),
         ),
       ],

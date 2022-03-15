@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 
 final themeData = ThemeData(
   brightness: Brightness.dark,
+  // inputDecorationTheme: InputDecorationTheme(
+  //   border: OutlineInputBorder(),
+  // ),
 );
 
 final iconTextButtonStyle = ButtonStyle(

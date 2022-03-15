@@ -1,5 +1,5 @@
-name: minecraft_launcher
-description: A new Flutter project.
+name: fl_launcher
+description: A minecraft launcher built with flutter.
 publish_to: none
 version: 1.0.0+1
 
@@ -16,6 +16,10 @@ dependencies:
     git: https://github.com/lceCoIdMoon/mouse_parallax
   http: ^0.13.4
   archive: ^3.1.6
+  file_picker: ^4.5.1
+  path_provider: ^2.0.9
+  confetti: ^0.6.0
+  shared_preferences: ^2.0.13
 
 dev_dependencies:
   flutter_test:

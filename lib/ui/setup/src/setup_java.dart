@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:minecraft_launcher/src/java.dart';
-import 'package:minecraft_launcher/ui/setup/setup.dart';
+import 'package:fl_launcher/main.dart';
+import 'package:fl_launcher/src/java.dart';
+import 'package:fl_launcher/ui/setup/setup.dart';
 
 class SetupJava extends StatefulWidget {
   const SetupJava({Key? key}) : super(key: key);
@@ -94,7 +95,10 @@ class _SetupJavaState extends State<SetupJava> {
                       : 'Install'),
                   onPressed: installing
                       ? numDone == numTotal
-                          ? () => setupChangePage(2)
+                          ? () {
+                              prefs.setBool('setup_java', true);
+                              setupNextPage();
+                            }
                           : null
                       : () => install(),
                 ),

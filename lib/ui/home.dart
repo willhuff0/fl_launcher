@@ -1,6 +1,6 @@
 import 'package:bitsdojo_window/bitsdojo_window.dart';
 import 'package:flutter/material.dart';
-import 'package:minecraft_launcher/theme.dart';
+import 'package:fl_launcher/theme.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
