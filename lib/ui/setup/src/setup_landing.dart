@@ -49,7 +49,7 @@ class SetupLanding extends StatelessWidget {
           right: 48.0,
           child: TextButton(
             child: Text('Next'),
-            onPressed: () => setupChangePage(1),
+            onPressed: () => setupNextPage(),
           ),
         ),
       ],

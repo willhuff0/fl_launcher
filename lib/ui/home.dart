@@ -15,6 +15,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
 
   @override
   void initState() {
+    appWindow.maxSize = null;
     _tabController = TabController(length: 3, vsync: this)
       ..addListener(() {
         if (_tabController.indexIsChanging) {

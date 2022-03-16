@@ -1,3 +1,4 @@
+import 'package:filesize/filesize.dart';
 import 'package:flutter/material.dart';
 import 'package:minecraft_launcher/src/java.dart';
 import 'package:minecraft_launcher/ui/setup/setup.dart';
@@ -48,29 +49,44 @@ class _SetupJavaState extends State<SetupJava> {
                             opacity: e.progress == 1.0 ? 0.5 : 1.0,
                             child: Padding(
                               padding: const EdgeInsets.all(4.0),
-                              child: Material(
-                                color: Colors.black26,
-                                borderRadius: BorderRadius.circular(4.0),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: Colors.black26,
+                                  borderRadius: BorderRadius.circular(8.0),
+                                  border: Border.all(color: Colors.white12)
+                                ),
                                 child: AnimatedContainer(
                                   duration: Duration(milliseconds: 150),
                                   curve: Curves.easeInOut,
                                   height: installing && e.progress != 1.0 ? 120 : 100,
                                   child: Padding(
                                     padding: const EdgeInsets.all(16.0),
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                    child: Stack(
+                                      fit: StackFit.expand,
                                       children: [
-                                        Text(e.displayName, style: TextStyle(fontSize: 18.0, color: Colors.grey[200])),
-                                        Text(e.description, style: TextStyle(color: Colors.grey[300])),
-                                        SizedBox(height: 4.0),
-                                        Text(e.url, style: TextStyle(color: Colors.grey[500])),
-                                        Padding(
-                                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                                          child: AnimatedContainer(
-                                            duration: Duration(milliseconds: 150),
-                                            curve: Curves.easeInOut,
-                                            height: installing && e.progress != 1.0 ? 20.0 : 0.0,
-                                            child: Align(alignment: Alignment.bottomCenter, child: LinearProgressIndicator(value: e.progress <= 0.0 ? null : e.progress)),
+                                        if (e.size != null) Positioned(
+                                          top: 0,
+                                          right: 0,
+                                          child: Text(filesize(e.size, 1), style: TextStyle(color: Colors.grey[500])),
+                                        ),
+                                        Expanded(
+                                          child: Column(
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            children: [
+                                              Text(e.displayName, style: TextStyle(fontSize: 18.0, color: Colors.grey[200])),
+                                              Text(e.description, style: TextStyle(color: Colors.grey[300])),
+                                              SizedBox(height: 4.0),
+                                              Text(e.url, style: TextStyle(color: Colors.grey[500])),
+                                              Padding(
+                                                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                                                child: AnimatedContainer(
+                                                  duration: Duration(milliseconds: 150),
+                                                  curve: Curves.easeInOut,
+                                                  height: installing && e.progress != 1.0 ? 20.0 : 0.0,
+                                                  child: Align(alignment: Alignment.bottomCenter, child: LinearProgressIndicator(value: e.progress <= 0.0 ? null : e.progress)),
+                                                ),
+                                              ),
+                                            ],
                                           ),
                                         ),
                                       ],
@@ -94,7 +110,7 @@ class _SetupJavaState extends State<SetupJava> {
                       : 'Install'),
                   onPressed: installing
                       ? numDone == numTotal
-                          ? () => setupChangePage(2)
+                          ? () => setupNextPage()
                           : null
                       : () => install(),
                 ),

@@ -3,8 +3,8 @@ import 'dart:io';
 
 import 'package:archive/archive.dart';
 import 'package:flutter/foundation.dart';
-import 'package:minecraft_launcher/main.dart';
 import 'package:http/http.dart' as http;
+import 'package:minecraft_launcher/src/preferences.dart';
 import 'package:path/path.dart' as p;
 
 final javaVersions = [
@@ -12,15 +12,21 @@ final javaVersions = [
   Java(version: 17, jre: false, displayName: 'Java 17', description: 'For Minecraft 1.17 and above'),
 ];
 
+// remove homePath check
+bool isJavaReady() => homePath != null && javaVersions.every((e) => e.isReady);
+
 class Java {
   final int version;
   final bool jre;
   final String displayName;
   final String description;
+  int? size;
 
-  Java({required this.version, required this.jre, required this.displayName, required this.description});
+  Java({required this.version, required this.jre, required this.displayName, required this.description}) {
+    getSize().then((value) => size = value);
+  }
 
-  static final javaHome = p.join(homePath, 'java');
+  static String get javaHome => p.join(homePath!, 'java');
   static String getExecutable(int version) => p.join(javaHome, 'java-$version', 'bin', 'java.exe');
 
   String get _platform => Platform.isWindows
@@ -31,6 +37,15 @@ class Java {
               ? 'linux'
               : throw Exception('This platform is not supported!');
   String get url => 'https://api.adoptium.net/v3/binary/latest/$version/ga/$_platform/x64/${jre ? 'jre' : 'jdk'}/hotspot/normal/eclipse';
+
+  bool get isReady => File(getExecutable(version)).existsSync();
+
+  Future<int?> getSize() async {
+    final response = await http.head(Uri.parse(url));
+    final size = response.headers['content-length'];
+    if (size == null) return null;
+    return int.parse(size);
+  }
 
   late String out;
   double progress = 0.0;
