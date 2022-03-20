@@ -35,6 +35,8 @@ class VanillaInstance extends Instance {
     // TODO: implement launch
   }
 
+  final root = '';
+
   @override
   Future prepare() async {
     print('Preparing $version');
@@ -42,13 +44,33 @@ class VanillaInstance extends Instance {
 
     // getAssets
     print('Fetching assets...');
-    final path = p.join('root', 'assets', 'indexes');
+    final path = p.join(root, 'assets', 'indexes');
     await Directory(path).create();
 
     final assetIndexPath = p.join(path, '${json['assetIndex']['id']}.json');
     final assetIndex = await http.get(Uri.parse(json['assetIndex']['url'])).then((value) => value.body);
     await File(assetIndexPath).writeAsString(assetIndex);
+    final assetindexes = jsonDecode(assetIndex)['objects'] as Map<String, dynamic>;
     print('> Got assetIndex.json');
+    print('> Downloading ${assetindexes.length} assets');
+
+    final downloadFutures = <Future>[];
+
+    final assetsPath = p.join(root, 'assets', 'objects');
+    Future downloadFile(String hash) async {
+      final subhash = hash.substring(0, 2);
+      final path = p.join(assetsPath, subhash, hash);
+      final url = 'https://resources.download.minecraft.net/${subhash}/${hash}';
+      await http.get(Uri.parse(url)).then((response) => File(path).create(recursive: true).then((file) => file.writeAsBytes(response.bodyBytes)));
+    }
+
+    assetindexes.forEach((key, value) => downloadFutures.add(downloadFile(value['hash'])));
+    await Future.wait(downloadFutures);
+    print('> Done.');
+    //
+
+    // getJar
+
     //
   }
 }
