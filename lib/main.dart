@@ -1,11 +1,10 @@
 import 'dart:async';
 
 import 'package:bitsdojo_window/bitsdojo_window.dart';
+import 'package:fl_launcher/ui/home/home_container.dart';
 import 'package:flutter/material.dart';
 import 'package:fl_launcher/theme.dart';
-import 'package:fl_launcher/ui/home.dart';
 import 'package:fl_launcher/ui/setup/setup.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 late SharedPreferences prefs;
@@ -24,7 +23,6 @@ void main() async {
   doWhenWindowReady(() {
     appWindow.minSize = Size(800, 600);
     appWindow.size = Size(800, 600);
-    appWindow.maxSize = Size(800, 600);
     appWindow.alignment = Alignment.center;
     appWindow.title = 'flLauncher';
     appWindow.show();
@@ -49,7 +47,6 @@ class _AppState extends State<App> {
   @override
   void initState() {
     _subscription = _refreshAppStream.listen((event) => setState(() {}));
-    getApplicationSupportDirectory().then((value) => print(value));
     super.initState();
   }
 

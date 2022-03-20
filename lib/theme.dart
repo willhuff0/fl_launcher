@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 final themeData = ThemeData(
   brightness: Brightness.dark,
+  useMaterial3: true,
   // inputDecorationTheme: InputDecorationTheme(
   //   border: OutlineInputBorder(),
   // ),

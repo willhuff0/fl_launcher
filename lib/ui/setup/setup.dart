@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:bitsdojo_window/bitsdojo_window.dart';
 import 'package:flutter/material.dart';
-import 'package:fl_launcher/main.dart';
 import 'package:fl_launcher/ui/setup/src/setup_done.dart';
 import 'package:fl_launcher/ui/setup/src/setup_homefolder.dart';
 
@@ -32,6 +31,7 @@ class _SetupPageState extends State<SetupPage> {
 
   @override
   void initState() {
+    appWindow.maxSize = Size(800, 600);
     _pageController = PageController();
     _pageStreamSubscription = _pageStream.listen((index) => setState(() {
           page = index;
@@ -59,7 +59,6 @@ class _SetupPageState extends State<SetupPage> {
               children: [
                 Expanded(child: MoveWindow()),
                 MinimizeWindowButton(),
-                MaximizeWindowButton(),
                 CloseWindowButton(),
               ],
             ),
