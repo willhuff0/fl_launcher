@@ -27,7 +27,7 @@ class _HomeState extends State<Home> {
 
   @override
   void initState() {
-    appWindow.maxSize = Size(double.maxFinite, double.maxFinite);
+    //appWindow.maxSize = Size(double.maxFinite, double.maxFinite);
     super.initState();
   }
 
@@ -36,7 +36,7 @@ class _HomeState extends State<Home> {
     final reverse = page < lastPage;
     lastPage = page;
     return Scaffold(
-      backgroundColor: Colors.grey[900],
+      //backgroundColor: Colors.grey[900],
       body: Column(
         children: [
           SizedBox(
@@ -50,6 +50,12 @@ class _HomeState extends State<Home> {
               ],
             ),
           ),
+          // TabBar(
+          //   tabs: [
+          //     Tab(icon: Icon(Icons.home_rounded), text: 'Home'),
+          //     Tab(icon: Icon(Icons.home_rounded), text: 'Home'),
+          //   ],
+          // ),
           Expanded(
             child: Padding(
               padding: const EdgeInsets.all(8.0),
@@ -57,7 +63,7 @@ class _HomeState extends State<Home> {
                 children: [
                   NavigationRail(
                     elevation: 1.0,
-                    backgroundColor: Colors.grey[900],
+                    //backgroundColor: Colors.grey[900],
                     selectedIndex: page,
                     onDestinationSelected: (value) => setState(() => page = value),
                     labelType: NavigationRailLabelType.selected,
@@ -68,22 +74,22 @@ class _HomeState extends State<Home> {
                       NavigationRailDestination(icon: Icon(Icons.settings_rounded), label: Text('Settings')),
                     ],
                     leading: Center(child: Text('fl', style: TextStyle(fontSize: 18.0))),
-                    groupAlignment: 1,
+                    groupAlignment: 0,
                   ),
                   SizedBox(width: 8.0),
                   Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.all(28.0),
-                      child: PageTransitionSwitcher(
-                        reverse: reverse,
-                        transitionBuilder: (child, primaryAnimation, secondaryAnimation) => SharedAxisTransition(
-                          animation: primaryAnimation,
-                          secondaryAnimation: secondaryAnimation,
-                          transitionType: SharedAxisTransitionType.vertical,
-                          fillColor: Colors.grey[900],
-                          child: child,
-                        ),
-                        child: pages[page],
+                    child: PageTransitionSwitcher(
+                      reverse: reverse,
+                      transitionBuilder: (child, primaryAnimation, secondaryAnimation) => SharedAxisTransition(
+                        animation: primaryAnimation,
+                        secondaryAnimation: secondaryAnimation,
+                        transitionType: SharedAxisTransitionType.vertical,
+                        //fillColor: Colors.grey[900],
+                        child: child,
+                      ),
+                      child: IndexedStack(
+                        index: page,
+                        children: pages,
                       ),
                     ),
                   ),

@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
 import 'package:fl_launcher/main.dart';
 import 'package:fl_launcher/src/java.dart';
 import 'package:fl_launcher/ui/setup/setup.dart';
+import 'package:flutter/material.dart';
 
 class SetupJava extends StatefulWidget {
   const SetupJava({Key? key}) : super(key: key);
@@ -55,7 +55,7 @@ class _SetupJavaState extends State<SetupJava> {
                                 child: AnimatedContainer(
                                   duration: Duration(milliseconds: 150),
                                   curve: Curves.easeInOut,
-                                  height: installing && e.progress != 1.0 ? 120 : 100,
+                                  //height: installing && e.progress != 1.0 ? 122 : 102,
                                   child: Padding(
                                     padding: const EdgeInsets.all(16.0),
                                     child: Column(

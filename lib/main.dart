@@ -23,6 +23,7 @@ void main() async {
   doWhenWindowReady(() {
     appWindow.minSize = Size(800, 600);
     appWindow.size = Size(800, 600);
+    appWindow.maxSize = Size(800, 600);
     appWindow.alignment = Alignment.center;
     appWindow.title = 'flLauncher';
     appWindow.show();

@@ -31,7 +31,6 @@ class _SetupPageState extends State<SetupPage> {
 
   @override
   void initState() {
-    appWindow.maxSize = Size(800, 600);
     _pageController = PageController();
     _pageStreamSubscription = _pageStream.listen((index) => setState(() {
           page = index;
